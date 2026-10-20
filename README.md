@@ -73,15 +73,6 @@
 
 <br>
 
-<p align="center">
-  <img src="docs/screenshots/hero.jpg" width="48%" alt="Hero section" />
-  <img src="docs/screenshots/github-analytics.jpg" width="48%" alt="GitHub Analytics dashboard" />
-</p>
-<p align="center">
-  <img src="docs/screenshots/contact.jpg" width="96%" alt="Contact section" />
-</p>
-
-<br>
 
 <blockquote align="center">
   <b>A portfolio should be as carefully built as the projects it links to.</b>
