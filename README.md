@@ -3,6 +3,27 @@
 A dark, emerald-accented developer portfolio built from scratch — selected work, a live GitHub
 analytics dashboard, and a working contact form, no templates.
 
+<table>
+<tr>
+<td width="50%">
+<img src="docs/screenshots/hero.jpg" alt="Hero section" />
+<br />🪐 <b>Hero</b><br />A particle globe, spring-text reveal, and a bokeh cursor trail
+</td>
+<td width="50%">
+<img src="docs/screenshots/github-analytics.jpg" alt="GitHub Analytics dashboard" />
+<br />📊 <b>GitHub analytics</b><br />Live contribution heatmap, streaks, and activity, fetched from the real API
+</td>
+</tr>
+<tr>
+<td width="50%" colspan="2">
+<img src="docs/screenshots/contact.jpg" alt="Contact section" />
+<br />✉️ <b>Contact</b><br />A working form with a particle-network background, not a mailto stub
+</td>
+</tr>
+</table>
+
+A portfolio should be as carefully built as the projects it links to.
+
 > about.ts
 ```ts
 const portfolio = {
@@ -16,19 +37,24 @@ const portfolio = {
         threeD: ["Three.js"],
         backend: ["Vercel serverless function (api/gh.ts)"],
     },
-    belief: "A portfolio should be as carefully built as the projects it links to.",
 };
 ```
 
+> tech_stack
+
 > features
 
-| | |
-|---|---|
-| 🧭 **Selected work** | Horizontal scroll gallery of real projects, each with repo, live demo and stack |
-| 📊 **GitHub analytics** | Live contribution heatmap, monthly/weekly charts, language mix, repo grid and activity feed — all fetched from the real GitHub API |
-| 🎨 **Motion** | Spring-based text reveals, a bokeh cursor trail, and a scroll-pinned horizontal gallery |
-| ✉️ **Contact** | A working form (Web3Forms) with an animated particle background, not a `mailto:` stub |
-| 📄 **Resume** | Full timeline, skills and projects on the page, plus a downloadable PDF |
+🪐  **Hero**
+A particle globe background, spring-based text reveal on every heading, and a bokeh particle trail that follows the cursor	📊  **GitHub analytics**
+A full dashboard fetched live from GitHub — contribution heatmap with hover tooltips, streaks, monthly/weekly charts, language mix, sortable repos and a recent-activity feed	🖱️  **Horizontal work gallery**
+A GSAP scroll-pinned, scrubbed horizontal gallery of real projects, each linking to its repo, live demo and stack
+
+🛠️  **Tech stack page**
+Brand icons for every language, framework and tool actually used, grouped by category	📄  **Resume**
+The full timeline, skills and projects inline, plus a one-click PDF download	✉️  **Contact**
+A real working form (Web3Forms) with Name / Email / Project type / Message, a particle-network background, and five social cards
+
+Every feature runs on real data — nothing on the GitHub analytics page or the project cards is hand-typed.
 
 > quick_start
 
@@ -87,6 +113,16 @@ frontend:
 contactForm:
   env: { VITE_WEB3FORMS_KEY: "<same key as .env.local>" }
 ```
+
+> roadmap
+
+| | |
+|---|---|
+| ✅ **Selected work** | Horizontal scroll gallery, project detail pages, repo + live links |
+| ✅ **GitHub analytics** | Heatmap, streaks, charts, repo grid, activity feed |
+| ✅ **Contact** | Working form, social cards, particle background |
+| 🔜 **Notes** | A small written-notes section — structure is in, content is still thin |
+| 🔜 **Tests** | No automated tests yet, just `tsc` and a production build on every change |
 
 > author
 
