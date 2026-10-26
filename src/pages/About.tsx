@@ -54,6 +54,13 @@ export default function About() {
               alt={profile.name}
               className="w-full h-full object-cover"
             />
+            <div
+              role="img"
+              aria-label="Signature"
+              className="signature pointer-events-none absolute top-[5%] left-[7%] w-[24%] aspect-[606/738]"
+            >
+              <div className="signature-ink" />
+            </div>
             <div className="pointer-events-none absolute inset-0 rounded-[18px] ring-1 ring-inset ring-white/[0.06]" />
           </div>
         </div>
