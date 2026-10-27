@@ -27,6 +27,9 @@ export const techIcons: Record<string, string> = {
   Express: simple('express', 'FFFFFF'),
   'Tailwind CSS': simple('tailwindcss', '06B6D4'),
   'Three.js': simple('threedotjs', 'FFFFFF'),
+  Vite: simple('vite', '646CFF'),
+  GSAP: simple('gsap', '0AE448'),
+  'Framer Motion': simple('framer', 'FFFFFF'),
 
   Pandas: simple('pandas', '150458'),
 
@@ -35,6 +38,9 @@ export const techIcons: Record<string, string> = {
   MySQL: simple('mysql', '4479A1'),
   Supabase: simple('supabase', '3FCF8E'),
   Flask: simple('flask', 'FFFFFF'),
+  FastAPI: simple('fastapi', '009688'),
+  SQLAlchemy: simple('sqlalchemy', 'D71F00'),
+  Prisma: simple('prisma', 'FFFFFF'),
   Neon: simple('neon', '00E599'),
 
   Git: simple('git', 'F05032'),

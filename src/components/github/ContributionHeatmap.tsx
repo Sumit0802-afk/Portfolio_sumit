@@ -17,9 +17,20 @@ function groupByWeek(days: ContributionDay[]): ContributionDay[][] {
   return weeks
 }
 
-export default function ContributionHeatmap({ days, total }: { days: ContributionDay[]; total: number }) {
+// Only show activity from April onward — the account had nothing before then.
+function sinceApril(days: ContributionDay[]): ContributionDay[] {
+  if (days.length === 0) return days
+  const last = new Date(`${days[days.length - 1].date}T00:00:00Z`)
+  const year = last.getUTCMonth() >= 3 ? last.getUTCFullYear() : last.getUTCFullYear() - 1
+  const start = `${year}-04-01`
+  return days.filter((d) => d.date >= start)
+}
+
+export default function ContributionHeatmap({ days: allDays }: { days: ContributionDay[]; total: number }) {
   const [hovered, setHovered] = useState<ContributionDay | null>(null)
   const [revealed, setRevealed] = useState(false)
+  const days = sinceApril(allDays)
+  const total = days.reduce((sum, d) => sum + d.count, 0)
   const weeks = groupByWeek(days)
 
   useEffect(() => {
@@ -48,17 +59,17 @@ export default function ContributionHeatmap({ days, total }: { days: Contributio
     <div>
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <span className="font-mono text-xs uppercase tracking-wide text-muted">Contribution activity</span>
-        <span className="font-mono text-xs text-ink">{total} contributions in the last year</span>
+        <span className="font-mono text-xs text-ink">{total} contributions since April</span>
       </div>
 
       <div className="overflow-x-auto pb-2 min-h-[120px]">
-        <div className="min-w-[760px] relative">
-          <div className="flex gap-1 mb-1 pl-8 relative h-4">
+        <div className="min-w-[520px] relative">
+          <div className="ml-9 mb-1 relative h-4">
             {monthLabels.map((m) => (
               <span
                 key={`${m.label}-${m.weekIndex}`}
                 className="absolute font-mono text-[10px] text-muted"
-                style={{ left: `${m.weekIndex * 14}px` }}
+                style={{ left: `${(m.weekIndex / weeks.length) * 100}%` }}
               >
                 {m.label}
               </span>
@@ -66,24 +77,24 @@ export default function ContributionHeatmap({ days, total }: { days: Contributio
           </div>
 
           <div className="flex gap-1">
-            <div className="flex flex-col gap-1 pr-2 shrink-0">
+            <div className="flex flex-col gap-1 w-9 shrink-0">
               {['', 'Mon', '', 'Wed', '', 'Fri', ''].map((d, i) => (
-                <span key={i} className="h-[10px] leading-[10px] font-mono text-[9px] text-muted">{d}</span>
+                <span key={i} className="h-[18px] leading-[18px] font-mono text-[9px] text-muted">{d}</span>
               ))}
             </div>
 
             {weeks.map((week, wi) => (
-              <div key={wi} className="flex flex-col gap-1">
+              <div key={wi} className="flex-1 min-w-0 flex flex-col gap-1">
                 {Array.from({ length: 7 }).map((_, di) => {
                   const day = week.find((d) => new Date(`${d.date}T00:00:00Z`).getUTCDay() === di)
-                  if (!day) return <div key={di} className="w-[10px] h-[10px]" />
+                  if (!day) return <div key={di} className="w-full h-[18px]" />
                   const delay = (wi * 7 + di) * 1.1
                   return (
                     <button
                       key={di}
                       type="button"
                       aria-label={`${day.count} contributions on ${day.date}`}
-                      className={`w-[10px] h-[10px] rounded-[2px] transition-all duration-300 ease-out hover:scale-125 focus-visible:scale-125 ${
+                      className={`w-full h-[18px] rounded-[3px] transition-all duration-300 ease-out hover:scale-110 focus-visible:scale-110 ${
                         day.level >= 3 ? 'animate-contrib-pulse' : ''
                       }`}
                       style={{

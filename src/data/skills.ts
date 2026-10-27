@@ -12,7 +12,7 @@ export const skillGroups: SkillGroup[] = [
     category: 'Web Development',
     items: [
       'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js',
-      'Express', 'Tailwind CSS', 'Three.js',
+      'Express', 'Tailwind CSS', 'Three.js', 'Vite', 'GSAP', 'Framer Motion',
     ],
   },
   {
@@ -21,7 +21,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Databases & Backend',
-    items: ['SQL', 'PostgreSQL', 'MySQL', 'Supabase', 'Flask', 'Neon'],
+    items: ['SQL', 'PostgreSQL', 'MySQL', 'Supabase', 'Flask', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Neon'],
   },
   {
     category: 'Tools & Deployment',
