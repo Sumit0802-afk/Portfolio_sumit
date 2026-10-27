@@ -16,6 +16,26 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'nexora',
+    name: 'NEXORA',
+    tagline: 'Design homes you can walk through.',
+    description:
+      'A home-design studio: draw 2D floor plans, furnish rooms, plan stairs and a terrace, and explore it all in 3D. Browse 1,200+ generated layouts, start from a photo, and export drawings — every edit in 2D appears in 3D from the same plan.',
+    features: [
+      '2D editor with snapping, measuring, multiple floors, and undo/redo',
+      '3D viewer with a first-person walkthrough that climbs the stairs',
+      'Design library of 1,200+ engine-checked layouts with search and filters',
+      'Terrace and interior designers with movable, editable furniture',
+      'Design checks for stairs, floor heights, terrace access, and plot bounds',
+    ],
+    stack: ['Next.js 14', 'React 18', 'TypeScript', 'react-konva', 'three.js', 'FastAPI', 'SQLAlchemy', 'PostgreSQL'],
+    repo: 'https://github.com/Sumit0802-afk/NEXORA',
+    demo: 'https://nexorahome.vercel.app',
+    status: 'operational',
+    image: '/projects/nexora.png',
+    category: 'Architecture / 3D',
+  },
+  {
     slug: 'falcon',
     name: 'FALCON',
     tagline: 'Design with purpose. Create without limits.',
