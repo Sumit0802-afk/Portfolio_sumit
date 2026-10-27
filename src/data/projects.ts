@@ -32,7 +32,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/Sumit0802-afk/NEXORA',
     demo: 'https://nexorahome.vercel.app',
     status: 'operational',
-    image: '/projects/nexora.png',
+    image: '/projects/nexora.webp',
     category: 'Architecture / 3D',
   },
   {
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/Sumit0802-afk/FALCON',
     demo: 'https://falcon-six-nu.vercel.app',
     status: 'operational',
-    image: '/projects/falcon.jpg',
+    image: '/projects/falcon.webp',
     category: 'Design tool',
   },
   {
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/Sumit0802-afk/Lightweight-Virtualization-Dashboard',
     demo: 'https://lightweight-liart.vercel.app',
     status: 'operational',
-    image: '/projects/kernellab.jpg',
+    image: '/projects/kernellab.webp',
     category: 'Systems / education',
   },
   {
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/Sumit0802-afk/mohit-gupta-portfolio',
     demo: 'https://mohit-gupta-portfolio-blue.vercel.app',
     status: 'operational',
-    image: '/projects/mohit-gupta.jpg',
+    image: '/projects/mohit-gupta.webp',
     category: 'Photography portfolio',
   },
 ]

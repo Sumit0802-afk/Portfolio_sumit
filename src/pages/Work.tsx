@@ -7,7 +7,7 @@ import { projects } from '../data/projects.ts'
 export default function Work() {
   return (
     <section className="relative">
-      <div className="max-w-[1600px] mx-auto px-6 pt-[clamp(140px,14vw,180px)] pb-[clamp(60px,8vw,110px)]">
+      <div className="max-w-[1600px] mx-auto px-6 pt-[80px] pb-[clamp(60px,8vw,110px)]">
         <SectionHeading
           eyebrow="Work"
           title="Projects I've built"
