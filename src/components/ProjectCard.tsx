@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Heading from './ui/Heading.tsx'
 import type { Project } from '../data/projects.ts'
+import { timeAgo } from '../lib/github.ts'
 
 function hostname(url: string | null): string {
   if (!url) return ''
@@ -59,6 +60,13 @@ export default function ProjectCard({ project, compact = false }: { project: Pro
         </Heading>
         <span className="status-pill shrink-0 mt-1.5">{project.category}</span>
       </div>
+
+      {project.updatedAt && (
+        <span className="-mt-2 font-mono text-[11px] text-muted inline-flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_rgba(0,255,157,0.7)]" aria-hidden="true" />
+          Updated {timeAgo(project.updatedAt)}
+        </span>
+      )}
 
       <p className={`text-muted text-[15px] leading-relaxed ${compact ? 'line-clamp-2' : ''}`}>{project.description}</p>
 

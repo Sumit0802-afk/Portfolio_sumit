@@ -39,15 +39,18 @@ function repoToProject(repo: GithubRepo): Project {
     image: `https://opengraph.githubassets.com/${Date.parse(repo.pushed_at)}/${repo.full_name}`,
     category: topics[0] ? prettyTopic(topics[0]) : repo.language ?? 'GitHub repo',
     auto: true,
+    updatedAt: repo.pushed_at,
   }
 }
 
 // The curated projects from projects.ts, followed by every other public,
 // non-fork GitHub repo (most recently pushed first). Re-checks GitHub every
 // minute while the tab is visible so new repos appear without a redeploy.
-// If GitHub can't be reached, the curated list still renders on its own.
+// Curated projects keep their hand-written text but take their live site link
+// and last-push time from GitHub. If GitHub can't be reached, the curated
+// list still renders on its own.
 export function useProjects(): Project[] {
-  const [extra, setExtra] = useState<Project[]>([])
+  const [list, setList] = useState<Project[]>(projects)
 
   useEffect(() => {
     const username = profile.github.replace('https://github.com/', '').replace(/\/$/, '')
@@ -58,13 +61,19 @@ export function useProjects(): Project[] {
       fetchRepos(username)
         .then((repos) => {
           if (cancelled) return
-          const next = repos
+          const byUrl = new Map(repos.map((r) => [normalize(r.html_url), r]))
+          const curated = projects.map((p) => {
+            const r = byUrl.get(normalize(p.repo))
+            return r ? { ...p, demo: r.homepage?.trim() || p.demo, updatedAt: r.pushed_at } : p
+          })
+          const extra = repos
             .filter((r) => !listed.has(normalize(r.html_url)) && !HIDDEN_REPOS.has(r.name.toLowerCase()))
             .sort((a, b) => Date.parse(b.pushed_at) - Date.parse(a.pushed_at))
             .map(repoToProject)
+          const next = [...curated, ...extra]
           // Skip the update when nothing changed, so the scroller and reveal
           // animations aren't rebuilt every minute.
-          setExtra((prev) => (JSON.stringify(prev) === JSON.stringify(next) ? prev : next))
+          setList((prev) => (JSON.stringify(prev) === JSON.stringify(next) ? prev : next))
         })
         .catch(() => {
           // Keep whatever we already had; the curated list never depends on this.
@@ -84,5 +93,5 @@ export function useProjects(): Project[] {
     }
   }, [])
 
-  return extra.length ? [...projects, ...extra] : projects
+  return list
 }

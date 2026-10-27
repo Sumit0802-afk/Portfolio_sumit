@@ -65,7 +65,7 @@ function githubApiUrl(path: string): string {
   return import.meta.env.PROD ? `/api/gh?path=${encodeURIComponent(path)}` : `https://api.github.com/${path}`
 }
 
-async function getJson<T>(cacheKey: string, url: string): Promise<T> {
+function readCache<T>(cacheKey: string): T | null {
   try {
     const cached = sessionStorage.getItem(`gh:${cacheKey}`)
     if (cached) {
@@ -75,6 +75,20 @@ async function getJson<T>(cacheKey: string, url: string): Promise<T> {
   } catch {
     // sessionStorage can throw in private browsing — fall through to a live fetch
   }
+  return null
+}
+
+function writeCache(cacheKey: string, data: unknown) {
+  try {
+    sessionStorage.setItem(`gh:${cacheKey}`, JSON.stringify({ data, savedAt: Date.now() }))
+  } catch {
+    // storage full or unavailable — caching is a nice-to-have, not required
+  }
+}
+
+async function getJson<T>(cacheKey: string, url: string): Promise<T> {
+  const cached = readCache<T>(cacheKey)
+  if (cached) return cached
 
   const headers: Record<string, string> = { Accept: 'application/vnd.github+json' }
   if (!import.meta.env.PROD && DEV_TOKEN) headers.Authorization = `Bearer ${DEV_TOKEN}`
@@ -82,13 +96,7 @@ async function getJson<T>(cacheKey: string, url: string): Promise<T> {
   const res = await fetch(url, { headers })
   if (!res.ok) throw new Error(`GitHub request failed (${res.status})`)
   const data = (await res.json()) as T
-
-  try {
-    sessionStorage.setItem(`gh:${cacheKey}`, JSON.stringify({ data, savedAt: Date.now() }))
-  } catch {
-    // storage full or unavailable — caching is a nice-to-have, not required
-  }
-
+  writeCache(cacheKey, data)
   return data
 }
 
@@ -108,11 +116,74 @@ export function fetchEvents(username: string): Promise<GithubEvent[]> {
   return getJson<GithubEvent[]>(path, githubApiUrl(path))
 }
 
+interface GraphqlCalendar {
+  totalContributions: number
+  weeks: { contributionDays: { date: string; contributionCount: number; contributionLevel: string }[] }[]
+}
+
+const LEVELS: Record<string, number> = {
+  NONE: 0,
+  FIRST_QUARTILE: 1,
+  SECOND_QUARTILE: 2,
+  THIRD_QUARTILE: 3,
+  FOURTH_QUARTILE: 4,
+}
+
+function fromCalendar(cal: GraphqlCalendar): ContributionData {
+  const days = cal.weeks.flatMap((w) =>
+    w.contributionDays.map((d) => ({ date: d.date, count: d.contributionCount, level: LEVELS[d.contributionLevel] ?? 0 })),
+  )
+  return { days, total: cal.totalContributions }
+}
+
+// The live calendar from GitHub's GraphQL API, which reflects new commits
+// within a minute or two. GraphQL always needs a token: in production that's
+// the server-side GITHUB_TOKEN behind api/contributions.ts; in local dev it's
+// VITE_GITHUB_TOKEN. Returns null when neither is available.
+async function fetchLiveContributions(username: string): Promise<ContributionData | null> {
+  if (import.meta.env.PROD) {
+    const url = `/api/contributions?user=${encodeURIComponent(username)}`
+    const res = await fetch(url)
+    if (res.status === 501) return null // no token configured on the server
+    if (!res.ok) throw new Error(`Contributions request failed (${res.status})`)
+    return fromCalendar((await res.json()) as GraphqlCalendar)
+  }
+  if (!DEV_TOKEN) return null
+  const res = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${DEV_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `query($login: String!) { user(login: $login) { contributionsCollection { contributionCalendar {
+        totalContributions weeks { contributionDays { date contributionCount contributionLevel } } } } } }`,
+      variables: { login: username },
+    }),
+  })
+  if (!res.ok) throw new Error(`GitHub GraphQL request failed (${res.status})`)
+  const body = await res.json()
+  return fromCalendar(body.data.user.contributionsCollection.contributionCalendar as GraphqlCalendar)
+}
+
 export async function fetchContributions(username: string): Promise<ContributionData> {
-  const url = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
-  const data = await getJson<{ total: Record<string, number>; contributions: ContributionDay[] }>(url, url)
-  const total = data.total?.lastYear ?? data.contributions.reduce((sum, d) => sum + d.count, 0)
-  return { days: data.contributions, total }
+  const cacheKey = `contributions:${username}`
+  const cached = readCache<ContributionData>(cacheKey)
+  if (cached) return cached
+
+  let data: ContributionData | null = null
+  try {
+    data = await fetchLiveContributions(username)
+  } catch {
+    // fall back to the public service below
+  }
+  if (!data) {
+    // Public service, no token needed, but it caches upstream for a while,
+    // so new commits can take hours to appear through it.
+    const url = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
+    const raw = await getJson<{ total: Record<string, number>; contributions: ContributionDay[] }>(url, url)
+    const total = raw.total?.lastYear ?? raw.contributions.reduce((sum, d) => sum + d.count, 0)
+    data = { days: raw.contributions, total }
+  }
+  writeCache(cacheKey, data)
+  return data
 }
 
 export function computeStreaks(days: ContributionDay[]): { current: number; longest: number } {
