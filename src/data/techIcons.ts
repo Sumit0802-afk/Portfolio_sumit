@@ -36,7 +36,6 @@ export const techIcons: Record<string, string> = {
   SQL: devicon('azuresqldatabase/azuresqldatabase-original'),
   PostgreSQL: simple('postgresql', '4169E1'),
   MySQL: simple('mysql', '4479A1'),
-  Supabase: simple('supabase', '3FCF8E'),
   Flask: simple('flask', 'FFFFFF'),
   FastAPI: simple('fastapi', '009688'),
   SQLAlchemy: simple('sqlalchemy', 'D71F00'),

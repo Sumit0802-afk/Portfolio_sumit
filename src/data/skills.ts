@@ -21,7 +21,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Databases & Backend',
-    items: ['SQL', 'PostgreSQL', 'MySQL', 'Supabase', 'Flask', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Neon'],
+    items: ['SQL', 'PostgreSQL', 'MySQL', 'Flask', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Neon'],
   },
   {
     category: 'Tools & Deployment',

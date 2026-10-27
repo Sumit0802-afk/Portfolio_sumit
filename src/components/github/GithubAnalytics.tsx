@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useInView } from '../../lib/useInView.ts'
 import Heading from '../ui/Heading.tsx'
 import ContributionHeatmap from './ContributionHeatmap.tsx'
 import BarChart from './BarChart.tsx'
@@ -25,13 +26,20 @@ interface State {
 const initialState: State = { user: null, repos: [], events: [], contributions: null, status: 'loading', refreshedAt: null }
 
 function Kpi({ label, value, loading }: { label: string; value: string | number | null; loading: boolean }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const shown = useInView(ref, { once: true })
+  // Numbers count up from zero on first view; strings like "7d" split into
+  // the number and its suffix so they count up too.
+  const match = typeof value === 'string' ? value.match(/^(\d+)(.*)$/) : null
+  const num = typeof value === 'number' ? value : match ? Number(match[1]) : null
+  const suffix = match ? match[2] : ''
   return (
-    <div className="p-4 rounded-[12px] border border-border bg-bg-raised">
+    <div ref={ref} className="p-4 rounded-[12px] border border-border bg-bg-raised">
       {loading ? (
         <div className="h-7 w-14 rounded bg-white/[0.06] animate-pulse mb-1.5" />
       ) : (
         <div className="text-white text-2xl font-semibold font-mono">
-          {value === null ? '—' : value}
+          {value === null ? '—' : num !== null ? <><CountUp value={shown ? num : 0} />{suffix}</> : value}
         </div>
       )}
       <div className="text-muted text-[11px] mt-1 uppercase tracking-wide font-mono">{label}</div>
@@ -39,23 +47,94 @@ function Kpi({ label, value, loading }: { label: string; value: string | number 
   )
 }
 
+const REFRESH_MS = 60 * 1000
+
+// Bars sweep in from the left one after another, and each percentage counts
+// up alongside its bar, the first time the list scrolls into view.
+function LanguageBars({ languages }: { languages: { language: string; pct: number }[] }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const shown = useInView(ref, { once: true })
+  return (
+    <div ref={ref} className="flex flex-col gap-3">
+      {languages.map((l, i) => (
+        <div key={l.language}>
+          <div className="flex justify-between text-[12.5px] mb-1">
+            <span className="text-ink">{l.language}</span>
+            <span className="text-muted font-mono">
+              <CountUp value={shown ? l.pct : 0} delayMs={i * 120} />%
+            </span>
+          </div>
+          <div className="h-1.5 rounded-full bg-border overflow-hidden">
+            <div
+              className="h-full bg-accent rounded-full shadow-[0_0_10px_rgba(0,255,157,0.5)] transition-[width] duration-1000 ease-out motion-reduce:transition-none"
+              style={{ width: shown ? `${l.pct}%` : '0%', transitionDelay: `${i * 120}ms` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Eases a number from its previous value to `value` over ~1s.
+function CountUp({ value, delayMs = 0 }: { value: number; delayMs?: number }) {
+  const [display, setDisplay] = useState(0)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDisplay(value)
+      return
+    }
+    let raf = 0
+    const from = display
+    const timer = window.setTimeout(() => {
+      const start = performance.now()
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / 1000)
+        const eased = 1 - Math.pow(1 - t, 3)
+        setDisplay(Math.round(from + (value - from) * eased))
+        if (t < 1) raf = requestAnimationFrame(tick)
+      }
+      raf = requestAnimationFrame(tick)
+    }, delayMs)
+    return () => {
+      window.clearTimeout(timer)
+      cancelAnimationFrame(raf)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, delayMs])
+  return <>{display}</>
+}
+
 export default function GithubAnalytics() {
   const username = profile.github.replace('https://github.com/', '').replace(/\/$/, '')
   const [state, setState] = useState<State>(initialState)
 
-  const load = () => {
-    setState((s) => ({ ...s, status: 'loading' }))
+  // A silent load refreshes in the background: no skeletons, and a failure
+  // keeps the data already on screen instead of showing the error card.
+  const load = (silent = false) => {
+    if (!silent) setState((s) => ({ ...s, status: 'loading' }))
     Promise.all([fetchUser(username), fetchRepos(username), fetchEvents(username), fetchContributions(username)])
       .then(([user, repos, events, contributions]) => {
         setState({ user, repos, events, contributions, status: 'ready', refreshedAt: new Date() })
       })
       .catch(() => {
-        setState((s) => ({ ...s, status: 'error' }))
+        if (!silent) setState((s) => ({ ...s, status: 'error' }))
       })
   }
 
   useEffect(() => {
     load()
+    // Keep pulling while the page is open, and catch up as soon as the
+    // visitor comes back to the tab, so GitHub changes appear without a reload.
+    const refresh = () => {
+      if (document.visibilityState === 'visible') load(true)
+    }
+    const id = window.setInterval(refresh, REFRESH_MS)
+    document.addEventListener('visibilitychange', refresh)
+    return () => {
+      window.clearInterval(id)
+      document.removeEventListener('visibilitychange', refresh)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -103,7 +182,7 @@ export default function GithubAnalytics() {
       {status === 'error' && (
         <div className="p-6 rounded-[14px] border border-border bg-bg-raised text-center mb-8">
           <p className="text-muted text-sm mb-3">Couldn't reach GitHub's API right now — this may be a rate limit.</p>
-          <button type="button" onClick={load} className="btn btn-outline">Retry</button>
+          <button type="button" onClick={() => load()} className="btn btn-outline">Retry</button>
         </div>
       )}
 
@@ -159,19 +238,7 @@ export default function GithubAnalytics() {
             {loading ? (
               <div className="h-[100px] rounded bg-white/[0.04] animate-pulse" />
             ) : languages.length ? (
-              <div className="flex flex-col gap-3">
-                {languages.map((l) => (
-                  <div key={l.language}>
-                    <div className="flex justify-between text-[12.5px] mb-1">
-                      <span className="text-ink">{l.language}</span>
-                      <span className="text-muted font-mono">{l.pct}%</span>
-                    </div>
-                    <div className="h-1.5 rounded-full bg-border overflow-hidden">
-                      <div className="h-full bg-accent rounded-full" style={{ width: `${l.pct}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <LanguageBars languages={languages} />
             ) : (
               <p className="text-muted text-sm">No language data available.</p>
             )}

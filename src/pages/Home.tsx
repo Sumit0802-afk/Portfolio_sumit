@@ -6,7 +6,7 @@ import SectionHeading from '../components/ui/SectionHeading.tsx'
 import Heading from '../components/ui/Heading.tsx'
 import TechIconGrid from '../components/TechIconGrid.tsx'
 import GithubAnalytics from '../components/github/GithubAnalytics.tsx'
-import { projects } from '../data/projects.ts'
+import { useProjects } from '../lib/useProjects.ts'
 import { skillGroups } from '../data/skills.ts'
 import { profile } from '../data/profile.ts'
 
@@ -62,6 +62,7 @@ const EXPLORING = [
 ]
 
 export default function Home() {
+  const projects = useProjects()
   const allTools = skillGroups.flatMap((g) => g.items)
 
   return (

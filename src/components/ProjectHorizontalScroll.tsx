@@ -87,7 +87,7 @@ export default function ProjectHorizontalScroll({ items }: { items: Project[] })
       <div ref={containerRef} className="relative w-full max-w-full overflow-hidden">
         <div ref={trackRef} className="flex gap-8 w-max will-change-transform">
           {items.map((project) => (
-            <div key={project.slug} className="w-[85vw] sm:w-[440px] shrink-0">
+            <div key={project.slug} className="w-[88vw] sm:w-[560px] lg:w-[680px] shrink-0">
               <ProjectCard project={project} compact />
             </div>
           ))}

@@ -2,9 +2,10 @@ import React from 'react'
 import ProjectCard from '../components/ProjectCard.tsx'
 import GsapRevealGrid from '../components/GsapRevealGrid.tsx'
 import SectionHeading from '../components/ui/SectionHeading.tsx'
-import { projects } from '../data/projects.ts'
+import { useProjects } from '../lib/useProjects.ts'
 
 export default function Work() {
+  const projects = useProjects()
   return (
     <section className="relative">
       <div className="max-w-[1600px] mx-auto px-6 pt-[80px] pb-[clamp(60px,8vw,110px)]">

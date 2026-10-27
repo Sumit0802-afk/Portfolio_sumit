@@ -12,6 +12,9 @@ export interface Project {
   status: ProjectStatus
   image: string
   category: string
+  // Set on projects built from a GitHub repo that isn't listed below; they
+  // have no detail page, so cards link out to the live site or repo instead.
+  auto?: boolean
 }
 
 export const projects: Project[] = [

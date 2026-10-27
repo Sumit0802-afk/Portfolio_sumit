@@ -35,6 +35,6 @@ export default async function handler(req: { query: Record<string, string | stri
   res
     .status(ghRes.status)
     .setHeader('Content-Type', 'application/json')
-    .setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600')
+    .setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120')
     .send(body)
 }

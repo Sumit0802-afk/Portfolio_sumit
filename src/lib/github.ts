@@ -18,8 +18,11 @@ export interface GithubUser {
 export interface GithubRepo {
   id: number
   name: string
+  full_name: string
   description: string | null
   html_url: string
+  homepage: string | null
+  topics?: string[]
   language: string | null
   stargazers_count: number
   forks_count: number
@@ -47,7 +50,7 @@ export interface ContributionData {
   total: number
 }
 
-const CACHE_TTL_MS = 10 * 60 * 1000 // 10 minutes — keeps repeat visits off the GitHub rate limit
+const CACHE_TTL_MS = 60 * 1000 // 1 minute — fresh enough that GitHub changes show up almost at once
 
 // In production (Vercel), GitHub REST calls go through our own /api/gh proxy
 // (api/gh.ts) so a GITHUB_TOKEN can be added server-side to raise the shared

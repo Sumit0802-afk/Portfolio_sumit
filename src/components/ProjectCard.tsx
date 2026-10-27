@@ -12,11 +12,24 @@ function hostname(url: string | null): string {
   }
 }
 
+// Curated projects open their detail page; auto-added GitHub repos have none,
+// so they open the live site (or the repo) in a new tab instead.
+function CardLink({ project, className, children }: { project: Project; className?: string; children: React.ReactNode }) {
+  if (project.auto) {
+    return (
+      <a href={project.demo ?? project.repo} target="_blank" rel="noreferrer" className={className}>
+        {children}
+      </a>
+    )
+  }
+  return <Link to={`/work/${project.slug}`} className={className}>{children}</Link>
+}
+
 export default function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   return (
     <article className={`flex flex-col ${compact ? 'gap-3.5' : 'gap-5'}`}>
-      <Link
-        to={`/work/${project.slug}`}
+      <CardLink
+        project={project}
         className="block rounded-card overflow-hidden border border-border bg-bg-raised hover:border-zinc-600 transition-colors"
       >
         <div className="flex items-center gap-2 px-3.5 py-2.5 border-b border-border bg-black/40">
@@ -35,14 +48,14 @@ export default function ProjectCard({ project, compact = false }: { project: Pro
             className="w-full h-full object-cover object-top scale-[1.04] transition-transform duration-300 hover:scale-[1.08]"
           />
         </div>
-      </Link>
+      </CardLink>
 
       <div className="flex items-start justify-between gap-4">
         <Heading
           tag="h3"
           className={`${compact ? 'text-xl sm:text-2xl line-clamp-2' : 'text-2xl sm:text-[28px]'} font-serif leading-tight`}
         >
-          <Link to={`/work/${project.slug}`} className="hover:text-accent">{project.name}</Link>
+          <CardLink project={project} className="hover:text-accent">{project.name}</CardLink>
         </Heading>
         <span className="status-pill shrink-0 mt-1.5">{project.category}</span>
       </div>
@@ -62,7 +75,9 @@ export default function ProjectCard({ project, compact = false }: { project: Pro
       <div className={`flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-border ${compact ? 'pt-3' : 'pt-4'}`}>
         <span className="font-mono text-xs text-muted">{project.stack.join(', ')}</span>
         <div className="flex gap-5 text-sm">
-          <Link to={`/work/${project.slug}`} className="text-ink font-medium hover:text-accent">View details →</Link>
+          {!project.auto && (
+            <Link to={`/work/${project.slug}`} className="text-ink font-medium hover:text-accent">View details →</Link>
+          )}
           {project.repo && (
             <a href={project.repo} target="_blank" rel="noreferrer" className="text-muted hover:text-accent">GitHub repo ↗</a>
           )}
