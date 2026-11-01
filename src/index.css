@@ -184,9 +184,26 @@
   animation: sparkFlash 450ms ease-out forwards;
 }
 
+/* Light travelling along the Currently Exploring track. */
+@keyframes trackSweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(400%);
+  }
+}
+
+.animate-track-sweep {
+  animation: trackSweep 4.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .animate-track-sweep {
+    animation: none;
   }
   .animate-fade-in-up {
     animation: none;
