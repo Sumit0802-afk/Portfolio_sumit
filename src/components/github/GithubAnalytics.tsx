@@ -66,7 +66,7 @@ function LanguageBars({ languages }: { languages: { language: string; pct: numbe
           </div>
           <div className="h-1.5 rounded-full bg-border overflow-hidden">
             <div
-              className="h-full bg-accent rounded-full shadow-[0_0_10px_rgba(0,255,157,0.5)] transition-[width] duration-1000 ease-out motion-reduce:transition-none"
+              className="h-full bg-accent rounded-full shadow-[0_0_10px_rgba(77,163,255,0.5)] transition-[width] duration-1000 ease-out motion-reduce:transition-none"
               style={{ width: shown ? `${l.pct}%` : '0%', transitionDelay: `${i * 120}ms` }}
             />
           </div>

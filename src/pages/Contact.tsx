@@ -133,7 +133,7 @@ export default function Contact() {
           <div className="flex items-center gap-4 mb-5">
             <span className="font-mono text-xs tracking-[0.14em] text-accent">01 / CONTACT</span>
             <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.1em] uppercase text-muted border border-accent/25 bg-accent/[0.06] px-3 py-1.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,255,163,0.8)] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(77,163,255,0.8)] animate-pulse" />
               Available for collaborations
             </span>
           </div>
@@ -175,7 +175,7 @@ export default function Contact() {
                       placeholder="Your name"
                       value={form.name}
                       onChange={onChange}
-                      className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(0,255,163,0.12)]"
+                      className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(77,163,255,0.12)]"
                     />
                     {errors.name && <span className="text-red-400 text-xs">{errors.name}</span>}
                   </label>
@@ -187,7 +187,7 @@ export default function Contact() {
                       placeholder="you@example.com"
                       value={form.email}
                       onChange={onChange}
-                      className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(0,255,163,0.12)]"
+                      className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(77,163,255,0.12)]"
                     />
                     {errors.email && <span className="text-red-400 text-xs">{errors.email}</span>}
                   </label>
@@ -199,7 +199,7 @@ export default function Contact() {
                     name="projectType"
                     value={form.projectType}
                     onChange={onChange}
-                    className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(0,255,163,0.12)]"
+                    className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(77,163,255,0.12)]"
                   >
                     {PROJECT_TYPES.map((t) => (
                       <option key={t} value={t}>{t}</option>
@@ -215,7 +215,7 @@ export default function Contact() {
                     placeholder="Tell me a little about your idea..."
                     value={form.message}
                     onChange={onChange}
-                    className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm resize-y transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(0,255,163,0.12)]"
+                    className="px-3.5 py-2.5 rounded-[10px] border border-border bg-bg text-ink text-sm resize-y transition-colors focus:outline-none focus:border-accent/70 focus:shadow-[0_0_0_3px_rgba(77,163,255,0.12)]"
                   />
                   {errors.message && <span className="text-red-400 text-xs">{errors.message}</span>}
                 </label>
@@ -281,7 +281,7 @@ export default function Contact() {
 
         {/* Zone C — footer statement */}
         <div className="mt-[clamp(48px,6vw,80px)] pt-8 border-t border-border flex items-center gap-3">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,255,163,0.7)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(77,163,255,0.7)]" />
           <p className="font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-muted">
             Good things start with a conversation.
           </p>

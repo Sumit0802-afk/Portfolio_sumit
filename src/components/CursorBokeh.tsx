@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 
-// Soft glowing bokeh trail that follows the cursor — varied-size white/mint/
-// emerald particles that drift and fade, matching the hero globe's starfield
+// Soft glowing bokeh trail that follows the cursor — varied-size white/sky/
+// azure particles that drift and fade, matching the hero globe's starfield
 // look. Pure canvas + rAF, no libraries. Global overlay, not section-scoped.
 
-const PALETTE = ['255, 255, 255', '0, 255, 157', '52, 211, 153', '16, 185, 129']
+const PALETTE = ['255, 255, 255', '77, 163, 255', '124, 196, 255', '31, 111, 235']
 const PALETTE_WEIGHTS = [0.22, 0.42, 0.22, 0.14]
 
 function pickColor(): string {

@@ -32,7 +32,7 @@ export default function BarChart({ data }: { data: { label: string; count: numbe
               </span>
               <div
                 className={`w-full rounded-t-[3px] origin-bottom transition-[transform,background-color] motion-reduce:transition-none ${
-                  isPeak ? 'bg-accent shadow-[0_0_14px_rgba(0,255,157,0.45)]' : 'bg-accent/30 group-hover:bg-accent/60'
+                  isPeak ? 'bg-accent shadow-[0_0_14px_rgba(77,163,255,0.45)]' : 'bg-accent/30 group-hover:bg-accent/60'
                 }`}
                 style={{
                   height: `${Math.max(3, (d.count / max) * 100)}%`,

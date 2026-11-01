@@ -13,7 +13,7 @@ interface Node {
   bright: boolean
 }
 
-const NODE_COLOR = '0, 255, 163'
+const NODE_COLOR = '77, 163, 255'
 const LINK_DIST = 140
 const MAX_NODES = 70
 

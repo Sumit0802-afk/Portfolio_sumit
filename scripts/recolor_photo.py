@@ -4,8 +4,8 @@ import sys
 src = sys.argv[1]
 dst = sys.argv[2]
 
-shadow = (3, 7, 5)       # near-black, matches site bg (#030705)
-highlight = (0, 255, 157)  # site accent green (#00ff9d)
+shadow = (3, 6, 12)       # near-black, matches site bg (#03060c)
+highlight = (77, 163, 255)  # site accent blue (#4da3ff)
 
 img = Image.open(src).convert('L')
 w, h = img.size

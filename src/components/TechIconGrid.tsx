@@ -51,11 +51,11 @@ export default function TechIconGrid({ items, labelMode = 'hover', align = 'cent
                 src={icon}
                 alt={name}
                 loading="lazy"
-                className={`${iconSize} object-contain transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(0,255,157,0.5)]`}
+                className={`${iconSize} object-contain transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(77,163,255,0.5)]`}
               />
             ) : generic ? (
               <div
-                className={`${iconSize} text-accent/80 transition-all duration-200 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_14px_rgba(0,255,157,0.5)]`}
+                className={`${iconSize} text-accent/80 transition-all duration-200 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_14px_rgba(77,163,255,0.5)]`}
                 aria-hidden="true"
               >
                 {generic}

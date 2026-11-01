@@ -4,18 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#030705',
-        'bg-raised': '#08140c',
-        ink: '#f1fbf5',
-        muted: '#8ea89a',
-        border: '#143021',
-        accent: '#00ff9d',
-        'accent-2': '#10b981',
-        emerald: '#059669',
-        mint: '#34d399',
-        'neon-green': '#00ff9d',
-        'neon-mint': '#00ff9d',
-        'deep-emerald': '#047857',
+        bg: '#03060c',
+        'bg-raised': '#081222',
+        ink: '#f1f6fd',
+        muted: '#8fa6c0',
+        border: '#14284a',
+        accent: '#4da3ff',
+        'accent-2': '#1f6feb',
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],

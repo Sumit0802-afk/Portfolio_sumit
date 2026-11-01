@@ -64,7 +64,7 @@ export default function ProjectCard({ project, compact = false }: { project: Pro
 
       {project.updatedAt && (
         <span className="-mt-2 font-mono text-[11px] text-muted inline-flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_rgba(0,255,157,0.7)]" aria-hidden="true" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_rgba(77,163,255,0.7)]" aria-hidden="true" />
           Updated {timeAgo(project.updatedAt)}
         </span>
       )}

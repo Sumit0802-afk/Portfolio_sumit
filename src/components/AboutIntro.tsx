@@ -19,7 +19,7 @@ export default function AboutIntro() {
           {profile.headline}
         </p>
         <p className="text-muted text-[15px] mb-6 flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(77,163,255,0.6)]" />
           {profile.location}
         </p>
 
@@ -37,16 +37,16 @@ export default function AboutIntro() {
 
         <Heading tag="h3" className="text-lg mb-3.5 text-white">Technical interests</Heading>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-muted text-[16px] leading-relaxed">
-          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(0,255,157,0.5)]">Full-stack development</li>
-          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(0,255,157,0.5)]">Data analytics &amp; exploratory data work</li>
-          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(0,255,157,0.5)]">Software development &amp; system design</li>
-          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(0,255,157,0.5)]">Problem solving through code</li>
+          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(77,163,255,0.5)]">Full-stack development</li>
+          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(77,163,255,0.5)]">Data analytics &amp; exploratory data work</li>
+          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(77,163,255,0.5)]">Software development &amp; system design</li>
+          <li className="pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent before:drop-shadow-[0_0_6px_rgba(77,163,255,0.5)]">Problem solving through code</li>
         </ul>
       </div>
 
       <div className="relative w-full mx-auto lg:h-full">
         <div className="absolute -inset-4 rounded-[26px] bg-accent/[0.08] blur-2xl pointer-events-none" />
-        <div className="relative w-full aspect-[4/5] max-h-[620px] lg:aspect-auto lg:max-h-none lg:h-full rounded-[18px] overflow-hidden border border-accent/25 bg-bg-raised shadow-[0_0_40px_-12px_rgba(0,255,157,0.35)] transition-transform duration-300 hover:-translate-y-1">
+        <div className="relative w-full aspect-[4/5] max-h-[620px] lg:aspect-auto lg:max-h-none lg:h-full rounded-[18px] overflow-hidden border border-accent/25 bg-bg-raised shadow-[0_0_40px_-12px_rgba(77,163,255,0.35)] transition-transform duration-300 hover:-translate-y-1">
           <img
             src="/profile/sumit-portrait.jpg"
             alt={profile.name}

@@ -26,7 +26,7 @@ export default function Navbar({ onOpenPalette, onOpenTerminal }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-[14px] transition-colors duration-150 ${isActive ? 'text-accent font-medium drop-shadow-[0_0_8px_rgba(0,255,157,0.4)]' : 'text-neutral-300 hover:text-accent'}`
+    `text-[14px] transition-colors duration-150 ${isActive ? 'text-accent font-medium drop-shadow-[0_0_8px_rgba(77,163,255,0.4)]' : 'text-neutral-300 hover:text-accent'}`
 
   return (
     <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-white/[0.08]">
@@ -63,12 +63,12 @@ export default function Navbar({ onOpenPalette, onOpenTerminal }: NavbarProps) {
         {/* Right CTA Button ("Say hello" with blue arrow square) */}
         <div className="flex items-center gap-3">
           <Link
-            className="inline-flex items-center gap-2.5 bg-accent/[0.14] hover:bg-accent/25 text-white text-[13.5px] font-medium pl-4 pr-1.5 py-1.5 rounded-full border border-accent/35 hover:border-accent/65 backdrop-blur-md shadow-[0_0_16px_-4px_rgba(0,255,157,0.3)] hover:shadow-[0_0_24px_-2px_rgba(0,255,157,0.55)] hover:-translate-y-0.5 transition-all duration-200 shrink-0"
+            className="inline-flex items-center gap-2.5 bg-accent/[0.14] hover:bg-accent/25 text-white text-[13.5px] font-medium pl-4 pr-1.5 py-1.5 rounded-full border border-accent/35 hover:border-accent/65 backdrop-blur-md shadow-[0_0_16px_-4px_rgba(77,163,255,0.3)] hover:shadow-[0_0_24px_-2px_rgba(77,163,255,0.55)] hover:-translate-y-0.5 transition-all duration-200 shrink-0"
             to="/contact"
           >
             <span>Say hello</span>
-            <span className="w-[20px] h-[20px] rounded-[5px] bg-[#00ff9d] shadow-[0_0_10px_rgba(0,255,157,0.6)] inline-flex items-center justify-center shrink-0" aria-hidden="true">
-              <svg viewBox="0 0 24 24" className="w-[11px] h-[11px] text-[#030705]" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+            <span className="w-[20px] h-[20px] rounded-[5px] bg-[#4da3ff] shadow-[0_0_10px_rgba(77,163,255,0.6)] inline-flex items-center justify-center shrink-0" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="w-[11px] h-[11px] text-[#03060c]" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />
                 <path d="M7 7h10v10" />
               </svg>
@@ -126,8 +126,8 @@ export default function Navbar({ onOpenPalette, onOpenTerminal }: NavbarProps) {
             onClick={() => setMenuOpen(false)}
           >
             <span>Say hello</span>
-            <span className="w-[18px] h-[18px] rounded-[4px] bg-[#00ff9d] shadow-[0_0_8px_rgba(0,255,157,0.6)] inline-flex items-center justify-center shrink-0" aria-hidden="true">
-              <svg viewBox="0 0 24 24" className="w-[10px] h-[10px] text-[#030705]" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+            <span className="w-[18px] h-[18px] rounded-[4px] bg-[#4da3ff] shadow-[0_0_8px_rgba(77,163,255,0.6)] inline-flex items-center justify-center shrink-0" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="w-[10px] h-[10px] text-[#03060c]" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" /><path d="M7 7h10v10" />
               </svg>
             </span>

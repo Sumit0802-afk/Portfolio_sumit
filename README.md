@@ -1,19 +1,19 @@
 <!-- Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:000000,50:00B37E,100:00FF9D&text=PORTFOLIO&fontColor=ffffff&fontSize=70&fontAlignY=38&desc=From%20complex%20problems%20to%20meaningful%20digital%20solutions.&descAlignY=60&descSize=18&animation=fadeIn" alt="Sumit Bhamu — from complex problems to meaningful digital solutions." width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:000000,50:1F6FEB,100:4DA3FF&text=PORTFOLIO&fontColor=ffffff&fontSize=70&fontAlignY=38&desc=From%20complex%20problems%20to%20meaningful%20digital%20solutions.&descAlignY=60&descSize=18&animation=fadeIn" alt="Sumit Bhamu — from complex problems to meaningful digital solutions." width="100%" />
 </p>
 
 <!-- Views -->
 <p align="right">
   <a href="https://github.com/Sumit0802-afk/Portfolio_sumit">
-    <img src="https://komarev.com/ghpvc/?username=Sumit0802-afk-Portfolio&label=Repo%20Views&color=00B37E&style=flat" alt="Repo views" />
+    <img src="https://komarev.com/ghpvc/?username=Sumit0802-afk-Portfolio&label=Repo%20Views&color=1F6FEB&style=flat" alt="Repo views" />
   </a>
 </p>
 
 <!-- Typing SVG -->
 <p align="center">
   <a href="https://sumitbhamu.vercel.app/">
-    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=22&duration=3500&pause=900&color=00FF9D&center=true&vCenter=true&multiline=false&repeat=true&random=false&width=720&height=50&lines=A+developer+portfolio%2C+built+from+scratch;Selected+work+%C2%B7+GitHub+analytics+%C2%B7+Resume+%C2%B7+Contact;No+templates%2C+no+fabricated+data" alt="A developer portfolio, built from scratch" />
+    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=22&duration=3500&pause=900&color=4DA3FF&center=true&vCenter=true&multiline=false&repeat=true&random=false&width=720&height=50&lines=A+developer+portfolio%2C+built+from+scratch;Selected+work+%C2%B7+GitHub+analytics+%C2%B7+Resume+%C2%B7+Contact;No+templates%2C+no+fabricated+data" alt="A developer portfolio, built from scratch" />
   </a>
 </p>
 
@@ -110,7 +110,7 @@ const portfolio = {
 ```
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:00B37E,100:00FF9D" alt="" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:1F6FEB,100:4DA3FF" alt="" width="100%" />
 </p>
 
 <!-- Tech Stack -->
@@ -123,7 +123,7 @@ const portfolio = {
 </p>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:00B37E,100:00FF9D" alt="" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:1F6FEB,100:4DA3FF" alt="" width="100%" />
 </p>
 
 <!-- Features -->
@@ -193,7 +193,7 @@ const motion = {
 </details>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:00B37E,100:00FF9D" alt="" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:1F6FEB,100:4DA3FF" alt="" width="100%" />
 </p>
 
 <!-- Quick start -->
@@ -270,7 +270,7 @@ contactForm:
 | 🔜 **Tests** | No automated tests yet, just `tsc` and a production build on every change |
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:00B37E,100:00FF9D" alt="" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=rect&height=2&color=0:000000,50:1F6FEB,100:4DA3FF" alt="" width="100%" />
 </p>
 
 <!-- Author -->
@@ -291,5 +291,5 @@ contactForm:
 </table>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:000000,50:00B37E,100:00FF9D&section=footer" alt="" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:000000,50:1F6FEB,100:4DA3FF&section=footer" alt="" width="100%" />
 </p>

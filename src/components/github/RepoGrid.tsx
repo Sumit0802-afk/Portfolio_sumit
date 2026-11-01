@@ -66,7 +66,7 @@ export default function RepoGrid({ repos }: { repos: GithubRepo[] }) {
                     <span className="flex items-center gap-1.5">
                       <span
                         className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: LANGUAGE_COLORS[r.language] ?? '#8ea89a' }}
+                        style={{ backgroundColor: LANGUAGE_COLORS[r.language] ?? '#8fa6c0' }}
                       />
                       {r.language}
                     </span>

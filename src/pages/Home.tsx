@@ -168,7 +168,7 @@ export default function Home() {
             <ol className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
               {EXPLORING.map((item, i) => (
                 <li key={item.title} className="relative lg:pt-9">
-                  <span aria-hidden="true" className="hidden lg:block absolute top-0 left-6 w-[11px] h-[11px] rounded-full bg-accent shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
+                  <span aria-hidden="true" className="hidden lg:block absolute top-0 left-6 w-[11px] h-[11px] rounded-full bg-accent shadow-[0_0_12px_rgba(77,163,255,0.8)]" />
                   <div className="card group relative h-full min-h-[220px] overflow-hidden flex flex-col">
                     <span className="absolute inset-0 bg-gradient-to-br from-accent/[0.07] to-transparent pointer-events-none" />
                     <span aria-hidden="true" className="absolute -bottom-8 right-3 font-serif text-[120px] leading-none text-accent/[0.06] transition-colors duration-300 group-hover:text-accent/[0.14] pointer-events-none">
@@ -182,7 +182,7 @@ export default function Home() {
                         </svg>
                       </div>
                       <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.1em] uppercase text-muted">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,255,163,0.8)] animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(77,163,255,0.8)] animate-pulse" />
                         In progress
                       </span>
                     </div>
@@ -200,7 +200,7 @@ export default function Home() {
 
       <section className="relative" id="contact-cta">
         <div className="max-w-[1600px] mx-auto px-6 pb-[clamp(60px,8vw,110px)]">
-          <div className="relative overflow-hidden rounded-[24px] border border-accent/25 bg-bg-raised shadow-[0_0_60px_-20px_rgba(0,255,157,0.35)]">
+          <div className="relative overflow-hidden rounded-[24px] border border-accent/25 bg-bg-raised shadow-[0_0_60px_-20px_rgba(77,163,255,0.35)]">
             <div className="absolute inset-0 pointer-events-none">
               <ContactParticleField />
             </div>
@@ -210,7 +210,7 @@ export default function Home() {
             <div className="relative grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-10 lg:gap-16 items-center p-[clamp(28px,5vw,64px)]">
               <div>
                 <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.1em] uppercase text-muted border border-accent/25 bg-accent/[0.06] px-3 py-1.5 rounded-full mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,255,163,0.8)] animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(77,163,255,0.8)] animate-pulse" />
                   Available for collaborations
                 </span>
                 <h2 className="font-serif text-[clamp(34px,5vw,60px)] font-semibold leading-[1.08] text-white">

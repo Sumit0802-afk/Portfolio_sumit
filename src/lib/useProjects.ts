@@ -8,8 +8,8 @@ const REFRESH_MS = 60 * 1000
 const normalize = (url: string) => url.toLowerCase().replace(/\/+$/, '')
 
 // Repos that should never show up as projects, by name (case-insensitive).
-// Portfolio_sumit is this site itself.
-const HIDDEN_REPOS = new Set(['portfolio_sumit'])
+// Portfolio_sumit is this site itself; Sumit0802-afk is the GitHub profile README.
+const HIDDEN_REPOS = new Set(['portfolio_sumit', 'sumit0802-afk'])
 
 // "my_cool-repo" → "My Cool Repo"; names that already have capitals are kept.
 function prettyName(name: string): string {

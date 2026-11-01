@@ -63,11 +63,11 @@ export default function Globe() {
     const phases = new Float32Array(TOTAL_PARTICLES)
     const speeds = new Float32Array(TOTAL_PARTICLES)
 
-    const neonMint = new THREE.Color('#00ff9d')
-    const brightMint = new THREE.Color('#34d399')
-    const emeraldGlow = new THREE.Color('#10b981')
-    const deepEmerald = new THREE.Color('#059669')
-    const richTeal = new THREE.Color('#047857')
+    const neonBlue = new THREE.Color('#4da3ff')
+    const brightBlue = new THREE.Color('#7cc4ff')
+    const azureGlow = new THREE.Color('#1f6feb')
+    const deepAzure = new THREE.Color('#1a56c4')
+    const richCobalt = new THREE.Color('#174ea6')
     const diamondWhite = new THREE.Color('#ffffff')
 
     let pIdx = 0
@@ -87,11 +87,11 @@ export default function Globe() {
       if (roll < 0.16) {
         c = diamondWhite.clone()
       } else if (roll < 0.65) {
-        c = neonMint.clone().lerp(brightMint, Math.random() * 0.4)
+        c = neonBlue.clone().lerp(brightBlue, Math.random() * 0.4)
       } else if (roll < 0.88) {
-        c = emeraldGlow.clone().lerp(deepEmerald, Math.random() * 0.3)
+        c = azureGlow.clone().lerp(deepAzure, Math.random() * 0.3)
       } else {
-        c = richTeal.clone()
+        c = richCobalt.clone()
       }
 
       colors[pIdx * 3] = c.r
@@ -120,7 +120,7 @@ export default function Globe() {
       positions[pIdx * 3 + 2] = pos.z
 
       const roll = Math.random()
-      const c = roll < 0.45 ? diamondWhite : roll < 0.85 ? neonMint : brightMint
+      const c = roll < 0.45 ? diamondWhite : roll < 0.85 ? neonBlue : brightBlue
       colors[pIdx * 3] = c.r
       colors[pIdx * 3 + 1] = c.g
       colors[pIdx * 3 + 2] = c.b
@@ -143,7 +143,7 @@ export default function Globe() {
       positions[pIdx * 3 + 2] = r * Math.cos(phi)
 
       const roll = Math.random()
-      const c = roll < 0.35 ? diamondWhite : roll < 0.85 ? neonMint : emeraldGlow
+      const c = roll < 0.35 ? diamondWhite : roll < 0.85 ? neonBlue : azureGlow
       colors[pIdx * 3] = c.r
       colors[pIdx * 3 + 1] = c.g
       colors[pIdx * 3 + 2] = c.b
@@ -231,11 +231,11 @@ export default function Globe() {
     glowCanvas.height = 1024
     const gctx = glowCanvas.getContext('2d')!
     const grad = gctx.createRadialGradient(512, 512, 0, 512, 512, 512)
-    grad.addColorStop(0.0, 'rgba(0, 255, 157, 0.45)')   // Intense radiant neon mint core
-    grad.addColorStop(0.2, 'rgba(52, 211, 153, 0.30)')   // Vibrant mint
-    grad.addColorStop(0.42, 'rgba(16, 185, 129, 0.18)') // Emerald aura
-    grad.addColorStop(0.68, 'rgba(5, 150, 105, 0.05)')  // Soft outer feather
-    grad.addColorStop(0.88, 'rgba(0, 255, 157, 0.008)') // Ethereal mist
+    grad.addColorStop(0.0, 'rgba(77,163,255, 0.45)')   // Intense radiant neon blue core
+    grad.addColorStop(0.2, 'rgba(124,196,255, 0.30)')   // Vibrant sky blue
+    grad.addColorStop(0.42, 'rgba(31,111,235, 0.18)') // Azure aura
+    grad.addColorStop(0.68, 'rgba(26,86,196, 0.05)')  // Soft outer feather
+    grad.addColorStop(0.88, 'rgba(77,163,255, 0.008)') // Ethereal mist
     grad.addColorStop(1.0, 'rgba(0, 0, 0, 0)')          // 100% transparent zero alpha!
     gctx.fillStyle = grad
     gctx.fillRect(0, 0, 1024, 1024)

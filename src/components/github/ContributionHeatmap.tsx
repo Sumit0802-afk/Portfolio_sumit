@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import type { ContributionDay } from '../../lib/github.ts'
 import { useInView } from '../../lib/useInView.ts'
 
-const LEVEL_COLORS = ['#0d1a14', '#0f3d2b', '#15713f', '#1aa858', '#00ff9d']
+const LEVEL_COLORS = ['#0d1626', '#0f2d55', '#15508f', '#1f7fd6', '#4da3ff']
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 function groupByWeek(days: ContributionDay[]): ContributionDay[][] {
@@ -137,7 +137,7 @@ function SparkBurst({ burst, columns }: { burst: Burst; columns: number }) {
     >
       <span
         className="absolute left-0 top-0 w-5 h-5 rounded-full animate-spark-flash"
-        style={{ background: 'radial-gradient(circle, rgba(0,255,157,0.85), rgba(0,255,157,0) 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(77,163,255,0.85), rgba(77,163,255,0) 70%)' }}
       />
       {sparks.map((s, i) => (
         <span
@@ -244,7 +244,7 @@ export default function ContributionHeatmap({ days: allDays }: { days: Contribut
                       ? 'M10 10 L19.5 8 A9.5 9.5 0 1 0 19.5 12 Z'
                       : 'M10 10 L18 4 A9.5 9.5 0 1 0 18 16 Z'}
                   />
-                  <circle cx="10" cy="5" r="1.4" fill="#030705" />
+                  <circle cx="10" cy="5" r="1.4" fill="#03060c" />
                 </svg>
               </div>
             )}
