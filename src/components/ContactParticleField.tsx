@@ -140,6 +140,12 @@ export default function ContactParticleField() {
     resize()
     window.addEventListener('resize', resize)
 
+    // Only animate while the canvas is on screen.
+    const io = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(raf)
+      if (entry.isIntersecting) raf = requestAnimationFrame(frame)
+    })
+
     if (reduced) {
       drawStatic()
     } else {
@@ -147,11 +153,12 @@ export default function ContactParticleField() {
         canvas.addEventListener('pointermove', onPointerMove)
         canvas.addEventListener('pointerleave', onPointerLeave)
       }
-      raf = requestAnimationFrame(frame)
+      io.observe(canvas)
     }
 
     return () => {
       cancelAnimationFrame(raf)
+      io.disconnect()
       window.removeEventListener('resize', resize)
       canvas.removeEventListener('pointermove', onPointerMove)
       canvas.removeEventListener('pointerleave', onPointerLeave)

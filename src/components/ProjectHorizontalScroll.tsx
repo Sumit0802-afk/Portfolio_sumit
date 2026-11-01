@@ -43,9 +43,8 @@ export default function ProjectHorizontalScroll({ items }: { items: Project[] })
           trigger: container,
           start: 'top top+=88',
           end: () => `+=${getScrollAmount()}`,
-          scrub: 1,
+          scrub: 0.4,
           pin: true,
-          pinType: 'transform',
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -55,10 +54,6 @@ export default function ProjectHorizontalScroll({ items }: { items: Project[] })
       })
 
       const refresh = () => ScrollTrigger.refresh()
-      const images = Array.from(track.querySelectorAll('img'))
-      images.forEach((img) => {
-        if (!img.complete) img.addEventListener('load', refresh, { once: true })
-      })
       if (document.fonts?.ready) document.fonts.ready.then(refresh)
       window.addEventListener('load', refresh)
       const timers = [setTimeout(refresh, 400), setTimeout(refresh, 1200)]

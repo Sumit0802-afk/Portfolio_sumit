@@ -327,11 +327,21 @@ export default function Globe() {
       renderer.render(scene, camera)
     }
 
-    raf = requestAnimationFrame(animate)
+    // Only render while the hero is on screen, so the globe doesn't compete
+    // with scrolling further down the page.
+    const io = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(raf)
+      if (entry.isIntersecting) {
+        last = performance.now()
+        raf = requestAnimationFrame(animate)
+      }
+    })
+    io.observe(canvas)
     if (reduced) renderer.render(scene, camera)
 
     return () => {
       cancelAnimationFrame(raf)
+      io.disconnect()
       window.removeEventListener('pointermove', onPointerMove)
       ro.disconnect()
       particleGeo.dispose()

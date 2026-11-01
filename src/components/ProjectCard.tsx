@@ -45,7 +45,8 @@ export default function ProjectCard({ project, compact = false }: { project: Pro
           <img
             src={project.image}
             alt={`${project.name} preview`}
-            loading="lazy"
+            loading={compact ? 'eager' : 'lazy'}
+            decoding="async"
             className="w-full h-full object-cover object-top scale-[1.04] transition-transform duration-300 hover:scale-[1.08]"
           />
         </div>
