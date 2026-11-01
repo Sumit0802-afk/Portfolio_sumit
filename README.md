@@ -12,14 +12,14 @@
 
 <!-- Typing SVG -->
 <p align="center">
-  <a href="https://portfolio-sumit.vercel.app">
+  <a href="https://sumitbhamu.vercel.app/">
     <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=22&duration=3500&pause=900&color=00FF9D&center=true&vCenter=true&multiline=false&repeat=true&random=false&width=720&height=50&lines=A+developer+portfolio%2C+built+from+scratch;Selected+work+%C2%B7+GitHub+analytics+%C2%B7+Resume+%C2%B7+Contact;No+templates%2C+no+fabricated+data" alt="A developer portfolio, built from scratch" />
   </a>
 </p>
 
 <!-- Links -->
 <p align="center">
-  <a href="https://portfolio-sumit.vercel.app" target="_blank">
+  <a href="https://sumitbhamu.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/Live_Demo-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live demo" />
   </a>&nbsp;
   <a href="https://github.com/Sumit0802-afk/Portfolio_sumit" target="_blank">
@@ -97,7 +97,7 @@ flowchart LR
 const portfolio = {
     tagline: "From complex problems to meaningful digital solutions.",
     what: "A personal portfolio — projects, toolkit, resume and a live contact form",
-    liveDemo: "https://portfolio-sumit.vercel.app",
+    liveDemo: "https://sumitbhamu.vercel.app/",
     sections: ["Selected work", "Tech stack", "GitHub analytics", "About", "Resume", "Contact"],
     stack: {
         frontend: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "React Router"],
